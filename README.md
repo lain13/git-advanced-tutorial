@@ -182,7 +182,7 @@ git merge origin/temp-remote-work
 ```
 
 **Conflict 해결 및 수동 커밋**:
-1. `app.js` 파일을 에디터로 열기(notepad app.js)
+1. `app.js` 파일을 에디터로 열기(ex:notepad app.js)
 2. conflict 마커(`<<<<<<<`, `=======`, `>>>>>>>`) 제거
 3. 두 함수 모두 유지하도록 수정
 4. 저장 후 단계별로 진행
