@@ -195,13 +195,34 @@ git add app.js
 git status
 git diff --cached
 
-# 수동으로 커밋 (merge 메시지 커스터마이징 가능)
+# 수동으로 커밋
 git commit -m "Merge remote work: integrate both local and remote features"
+
+# 상태 확인
+git log --oneline --graph
+```
+
+### 3.5 Fetch 후 Rebase 연습
+
+```bash
+# Merge하기 전 상태로 되돌림.
+git reset --hard HEAD~1
+
+# 내 로컬 커밋을 원격 브랜치(origin/temp-remote-work)의 최신 커밋 위로 옮깁
+git rebase origin/temp-remote-work
+
+# 충돌 해결 후
+git add app.js
+git rebase --continue
+
+# 상태 확인
+git log --oneline --graph
 
 # 정리
 git push origin main
 git push origin --delete temp-remote-work
 git branch -d temp-remote-work
+
 ```
 
 ---
