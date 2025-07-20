@@ -16,7 +16,7 @@ Git의 기본 명령어는 알지만 merge conflict, rebase, cherry-pick, stash 
 
 ---
 
-## Phase 1: 환경 설정 (10분)
+## Phase 1: 환경 설정
 
 ### 1.1 GitHub 리포지터리 생성
 1. GitHub에서 새 리포지터리 생성합니다. (`git-advanced-tutorial`)
@@ -35,7 +35,7 @@ cd git-advanced-tutorial
 # 초기 파일 생성
 echo "console.log('Hello World');" > app.js
 echo "body { margin: 0; }" > styles.css
-echo '<html><head><title>Tutorial</title></head><body><h1>Git Tutorial</h1></body></html>' > index.html
+echo "<html><head><title>Tutorial</title></head><body><h1>Git Tutorial</h1></body></html>" > index.html
 
 # 초기 커밋
 git add .
@@ -52,7 +52,7 @@ git status
 
 ---
 
-## Phase 2: 기본 워크플로우 (15분)
+## Phase 2: 기본 워크플로우
 
 ### 2.1 Feature 브랜치 생성 및 작업
 ```bash
@@ -90,7 +90,7 @@ git log --oneline --graph
 
 ---
 
-## Phase 3: Merge Conflict 해결 (20분)
+## Phase 3: Merge Conflict 해결
 
 ### 3.1 기본 Conflict 해결
 ```bash
@@ -111,7 +111,7 @@ git merge feature/user-management
 ```
 
 **수동 Conflict 해결**:
-1. `app.js` 파일을 에디터로 열기
+1. `app.js` 파일을 에디터로 열기(notepad app.js)
 2. `<<<<<<<`, `=======`, `>>>>>>>` 마커 확인
 3. 원하는 버전 선택하거나 수동으로 병합
 4. 마커 제거 후 저장
@@ -179,16 +179,34 @@ git commit -m "Local work while others are working"
 # fetch 후 merge 연습
 git fetch origin
 git merge origin/temp-remote-work
-git push origin main
+```
+
+**Conflict 해결 및 수동 커밋**:
+1. `app.js` 파일을 에디터로 열기(notepad app.js)
+2. conflict 마커(`<<<<<<<`, `=======`, `>>>>>>>`) 제거
+3. 두 함수 모두 유지하도록 수정
+4. 저장 후 단계별로 진행
+
+```bash
+# conflict 해결 후
+git add app.js
+
+# 커밋하기 전에 상태 확인 (staged 상태 확인)
+git status
+git diff --cached
+
+# 수동으로 커밋 (merge 메시지 커스터마이징 가능)
+git commit -m "Merge remote work: integrate both local and remote features"
 
 # 정리
+git push origin main
 git push origin --delete temp-remote-work
 git branch -d temp-remote-work
 ```
 
 ---
 
-## Phase 4: Rebase 연습 (25분)
+## Phase 4: Rebase 연습
 
 ### 4.1 기본 Rebase 실습
 ```bash
@@ -248,7 +266,7 @@ git push origin main
 
 ---
 
-## Phase 5: Cherry-pick 연습 (15분)
+## Phase 5: Cherry-pick 연습
 
 ### 5.1 Cherry-pick 준비
 ```bash
@@ -296,7 +314,7 @@ git cherry-pick -x <COMMIT_HASH>
 
 ---
 
-## Phase 6: Stash 연습 (15분)
+## Phase 6: Stash 연습
 
 ### 6.1 기본 Stash 사용
 ```bash
@@ -346,7 +364,7 @@ git stash clear
 
 ---
 
-## Phase 7: Revert & Reset 연습 (15분)
+## Phase 7: Revert & Reset 연습
 
 ### 7.1 Revert 연습
 ```bash
@@ -366,7 +384,7 @@ git log --oneline -5
 git revert <BUGGY_COMMIT_HASH>
 ```
 
-### 7.2 Reset 연습 (주의: 위험한 명령어)
+### 7.2 Reset 연습
 ```bash
 # 테스트용 커밋들 생성
 echo "// Test 1" >> app.js
@@ -416,13 +434,11 @@ git add .
 git commit -m "Clean up tutorial files"
 git push origin main
 
-# 원격 브랜치 정리
-git push origin --delete temp-remote-work
-
 # 최종 상태 확인
 git status
 git log --oneline -5
 git branch --all
+echo "Tutorial completed! Repository is clean and ready for re-practice."
 ```
 
 ---
